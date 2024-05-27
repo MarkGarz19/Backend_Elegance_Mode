@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "title": "Men's Casual Shirt",
+        "price": 29.99,
+        "description": "A comfortable and stylish casual shirt for men.",
+        "category": "Men",
+        "image": "https://example.com/images/mens_casual_shirt.jpg",
+        "rating": {
+            "rate": 4.3,
+            "count": 45
+        }
+    },
+    {
+        "id": 2,
+        "title": "Women's Summer Dress",
+        "price": 49.99,
+        "description": "A light and airy summer dress perfect for warm weather.",
+        "category": "Women",
+        "image": "https://example.com/images/womens_summer_dress.jpg",
+        "rating": {
+            "rate": 4.8,
+            "count": 67
+        }
+    },
+    {
+        "id": 3,
+        "title": "Kid's Hoodie",
+        "price": 24.99,
+        "description": "A cozy hoodie for kids, available in various colors.",
+        "category": "Kids",
+        "image": "https://example.com/images/kids_hoodie.jpg",
+        "rating": {
+            "rate": 4.6,
+            "count": 30
+        }
+    },
+    {
+        "id": 4,
+        "title": "Men's Jeans",
+        "price": 39.99,
+        "description": "Classic denim jeans for men, perfect for everyday wear.",
+        "category": "Men",
+        "image": "https://example.com/images/mens_jeans.jpg",
+        "rating": {
+            "rate": 4.4,
+            "count": 50
+        }
+    },
+    {
+        "id": 5,
+        "title": "Women's Blouse",
+        "price": 34.99,
+        "description": "A chic blouse for women, suitable for both casual and formal occasions.",
+        "category": "Women",
+        "image": "https://example.com/images/womens_blouse.jpg",
+        "rating": {
+            "rate": 4.7,
+            "count": 55
+        }
+    },
+    {
+        "id": 6,
+        "title": "Kid's T-Shirt",
+        "price": 14.99,
+        "description": "A fun and colorful t-shirt for kids.",
+        "category": "Kids",
+        "image": "https://example.com/images/kids_tshirt.jpg",
+        "rating": {
+            "rate": 4.5,
+            "count": 40
+        }
+    }
+]
