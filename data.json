@@ -1,74 +1,110 @@
 [
     {
         "id": 1,
-        "title": "Men's Casual Shirt",
-        "price": 29.99,
-        "description": "A comfortable and stylish casual shirt for men.",
-        "category": "Men",
-        "image": "https://example.com/images/mens_casual_shirt.jpg",
+        "title": "Chaqueta Azul para Mujer",
+        "price": 55.99,
+        "description": "Chaqueta azul excelentes para primavera/otoño, adecuadas para muchas ocasiones como salir con los amigos o viajar..",
+        "category": "ropa de mujer",
+        "image": ".../../src/assets/img/mujer-chaqueta-azul.jpg",
         "rating": {
-            "rate": 4.3,
-            "count": 45
+            "rate": 4.7,
+            "count": 500
         }
     },
     {
         "id": 2,
-        "title": "Women's Summer Dress",
-        "price": 49.99,
-        "description": "A light and airy summer dress perfect for warm weather.",
-        "category": "Women",
-        "image": "https://example.com/images/womens_summer_dress.jpg",
+        "title": "Chaqueta Deportiva Roja para Hombre",
+        "price": 59.99,
+        "description": "Abrigo de alta calidad perfecto para primavera/otoño/invierno, ideal para diversas ocasiones como fiestas, salidas informales o viajes. Un regalo ideal para cualquier hombre en tu vida.",
+        "category": "ropa de hombre",
+        "image": ".../../src/assets/img/chaqueta-hombre-roja.jpg",
         "rating": {
             "rate": 4.8,
-            "count": 67
+            "count": 450
         }
     },
     {
         "id": 3,
-        "title": "Kid's Hoodie",
-        "price": 24.99,
-        "description": "A cozy hoodie for kids, available in various colors.",
-        "category": "Kids",
-        "image": "https://example.com/images/kids_hoodie.jpg",
+        "title": "Vestido Blanco para Mujer",
+        "price": 29.99,
+        "description": "Un vestido blanco para mujer ideal para la ocasión de verano, primavera. Ideal para salir a la playa, ir a una fiesta o una boda. Un regalo ideal para cualquier mujer en tu vida.",
+        "category": "ropa de mujer",
+        "image": ".../../src/assets/img/mujer-vestido-blanco.jpg",
         "rating": {
-            "rate": 4.6,
-            "count": 30
+            "rate": 4.5,
+            "count": 300
         }
     },
     {
         "id": 4,
-        "title": "Men's Jeans",
-        "price": 39.99,
-        "description": "Classic denim jeans for men, perfect for everyday wear.",
-        "category": "Men",
-        "image": "https://example.com/images/mens_jeans.jpg",
+        "title": "Vestido de Noche para Niña",
+        "price": 49.99,
+        "description": "Elegante vestido de noche para niña, perfecto para ocasiones especiales como bodas, fiestas de gala, cenas formales y eventos importantes. Te hará lucir deslumbrante y sofisticada. Un regalo magnífico para cualquier niña.",
+        "category": "ropa de niñas",
+        "image": ".../../src/assets/img/vestido-negro-niña.jpg",
         "rating": {
-            "rate": 4.4,
-            "count": 50
+            "rate": 4.9,
+            "count": 600
         }
     },
     {
         "id": 5,
-        "title": "Women's Blouse",
-        "price": 34.99,
-        "description": "A chic blouse for women, suitable for both casual and formal occasions.",
-        "category": "Women",
-        "image": "https://example.com/images/womens_blouse.jpg",
+        "title": "Camiseta Negra para Hombre",
+        "price": 39.99,
+        "description": "Camiseta negra ideal para primavera/verano, ideal para la ocasión de salir con los amigos. Un regalo ideal para cualquier hombre en tu vida.",
+        "category": "ropa de hombre",
+        "image": ".../../src/assets/img/camiseta-negro-hombre.jpg",
         "rating": {
-            "rate": 4.7,
-            "count": 55
+            "rate": 4.6,
+            "count": 400
         }
     },
     {
         "id": 6,
-        "title": "Kid's T-Shirt",
-        "price": 14.99,
-        "description": "A fun and colorful t-shirt for kids.",
-        "category": "Kids",
-        "image": "https://example.com/images/kids_tshirt.jpg",
+        "title": "Vestido con Plumas para Niña",
+        "price": 39.99,
+        "description": "Adorable vestido de plumas azules para niña, ideal para la ocasiones de primavera/otoño. Un regalo ideal para cualquier niña en tu vida.",
+        "category": "ropa de niñas",
+        "image": ".../../src/assets/img/vestido-estampado-niña.jpg",
         "rating": {
-            "rate": 4.5,
-            "count": 40
+            "rate": 4.7,
+            "count": 350
+        }
+    },
+    {
+        "id": 7,
+        "title": "Camisa de Ninjago para Niño",
+        "price": 29.99,
+        "description": "Camisa de Anime de la Serie de Ninjago para niño, ideal para las ocasiones de primavera/verano. Un regalo ideal para cualquier niño en tu vida.",
+        "category": "ropa de niños",
+        "image": ".../../src/assets/img/camisa-anime-niño.jpg",
+        "rating": {
+            "rate": 4.8,
+            "count": 250
+        }
+    },
+    {
+        "id": 8,
+        "title": "Camisa Azul Marino estampado de dinosario para Niños",
+        "price": 14.99,
+        "description": "Camisa azul marino con estampado de dinosario para niños, ideal para la ocasiones de primavera/verano. Un regalo ideal para cualquier niño en tu vida.",
+        "category": "ropa de niños",
+        "image": ".../../src/assets/img/camisa-golf-azulmarino-niño.jpg",
+        "rating": {
+            "rate": 4.6,
+            "count": 200
+        }
+    },
+    {
+        "id": 9,
+        "title": "Sudadera Azul Marino para Hombre",
+        "price": 34.99,
+        "description": "Sudadera de hombre Azul Marino para otoño/invierno, ideal para las ocasiones de salir con los amigos. Un regalo ideal para cualquier hombre en tu vida.",
+        "category": "ropa de hombre",
+        "image": ".../../src/assets/img/sudadera-azulmarino-hombre.jpg",
+        "rating": {
+            "rate": 4.6,
+            "count": 200
         }
     }
 ]

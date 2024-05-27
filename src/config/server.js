@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const { MongoClient } = require('mongodb');
-const cliente = new MongoClient(process.env.MONGO_URI);
+const cliente = new MongoClient(process.env.MONGO_URL);
 
 async function connectToMongoDB() { // para conectar con la base de datos de mongodb
     try {
