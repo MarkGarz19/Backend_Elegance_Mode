@@ -7,11 +7,14 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 server.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     next()
 })
+
+server.use(express.json());
 
 server.get('/', (req, res) => {
     res.send('API de la tienda Elegance Mode');

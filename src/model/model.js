@@ -31,11 +31,11 @@ class Modelproductos {
             console.log(resultado)
             await disconnectFromMongoDB();
             if (!resultado) {
-                throw Error("No hay productos en la base de datos");
+                return { data: null, error: true }
             }
             return { data: resultado, error: false }
         } catch (error) {
-            console.log("Error al conectar a la base de datos de MongoDB", error)
+            return { data: null, error: false }
         }
     }
 
