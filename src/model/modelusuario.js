@@ -26,7 +26,6 @@ class ModelUsuarios {
             if (!dataDB) {
                 throw new Error("No se ha podido conectar a la base de datos de MongoDB");
             }
-
             const result = await dataDB.db('Elegance').collection('usuarios').insertOne(newUser);
             await disconnectFromMongoDB();
             return { data: result, error: false };
@@ -35,7 +34,19 @@ class ModelUsuarios {
             return { error: true, message: error.message };
         }
     }
-
+    static async UsarioEmail(email){
+        try{
+            const dataDB = await connectToMongoDB();
+            if (!dataDB) {
+                throw new Error("No se ha podido conectar a la base de datos de MongoDB");
+            }
+            const resultado = await dataDB.db('Elegance').collection('usuarios').findOne({email: email});
+            await disconnectFromMongoDB();
+            return resultado
+        }catch(error){
+            return { error: true, message: error.message };
+        }
+    }
     static async loginUser({ email, password }) {
         try {
             const dataDB = await connectToMongoDB();
