@@ -1,7 +1,7 @@
-const { connectToMongoDB, disconnectFromMongoDB } = require('../config/server');
+const { connectToMongoDB, disconnectFromMongoDB } = require('../config/server'); // importamos las dos funciones para conectar y desconectar la base de datos de mongo
 
-class ModelUsuarios {
-    static async getAll() {
+class ModelUsuarios { // creamos la clase modelo de usuarios
+    static async getAll() { // esta funcion asicronica deberia comunicarse con la base de datos para obtener todos los usuarios
         try {
             const dataDB = await connectToMongoDB();
             if (!dataDB) {
@@ -20,7 +20,7 @@ class ModelUsuarios {
             return { error: true, message: error.message };
         }
     }
-    static async registerUser(newUser) {
+    static async registerUser(newUser) { // esta funcion asicronica deberia comunicarse con la base de datos para registrar un nuevo usuario
         try {
             const dataDB = await connectToMongoDB();
             if (!dataDB) {
@@ -34,7 +34,7 @@ class ModelUsuarios {
             return { error: true, message: error.message };
         }
     }
-    static async UsarioEmail(email){
+    static async UsarioEmail(email){ // esta funcion asicronica deberia comunicarse con la base de datos para obtener un usuario por email
         try{
             const dataDB = await connectToMongoDB();
             if (!dataDB) {
@@ -47,7 +47,7 @@ class ModelUsuarios {
             return { error: true, message: error.message };
         }
     }
-    static async loginUser({ email, password }) {
+    static async loginUser({ email, password }) { // esta funcion deberia comunicarse con la base de datos para iniciar sesión y obtener el usuario correspondiente
         try {
             const dataDB = await connectToMongoDB();
             if (!dataDB) {
@@ -58,11 +58,11 @@ class ModelUsuarios {
             await disconnectFromMongoDB();
 
             if (!user) {
-                throw new Error("Usuario Invalido");
+                throw new Error("Usuario Invalido"); // en caso de que el usuario no exista devolvemos un error
             }
 
             if (user.password !== password) {
-                throw new Error("Contraseña incorrecta");
+                throw new Error("Contraseña incorrecta"); // en caso de que la contraseña sea incorrecta devolvemos un error
             }
 
             return { data: user, error: false };

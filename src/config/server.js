@@ -1,10 +1,10 @@
-const dotenv = require('dotenv');
-dotenv.config();
+const dotenv = require('dotenv'); // importamos dotenv
+dotenv.config(); // configuramos dotenv
 
 const { MongoClient } = require('mongodb');
 const cliente = new MongoClient(process.env.MONGO_URL);
 
-async function connectToMongoDB() { // para conectar con la base de datos de mongodb
+async function connectToMongoDB() { // esta funcion asicronica deberia comunicarse para conectarse con la base de datos de mongodb
     try {
         await cliente.connect()
         console.log("Conectado a la base de datos de MongoDB")
@@ -15,7 +15,7 @@ async function connectToMongoDB() { // para conectar con la base de datos de mon
     }
 }
 
-async function disconnectFromMongoDB() { // para desconectar de la base de datos de mongodb
+async function disconnectFromMongoDB() { // esta funcion asicronica deberia comunicarse para desconectarse de la base de datos de mongodb
     try {
         await cliente.close()
         console.log("Desconectado de la base de datos de MongoDB")

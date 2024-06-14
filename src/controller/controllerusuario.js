@@ -2,15 +2,15 @@ const ModelUsuarios = require('../model/modelusuario');
 
 
 class UserController {
-    static async registerUser(req, res) {
+    static async registerUser(req, res) { // esta funcion asicronica deberia comunicarse con la base de datos para registrar un nuevo usuario
         const newUser = req.body;
 
-        const usuarioexistente = await ModelUsuarios.UsarioEmail(newUser.email);
+        const usuarioexistente = await ModelUsuarios.UsarioEmail(newUser.email); // esta variable es para saber si el usuario ya existe
         if (usuarioexistente) {
             return res.status(200).json({ message: "El usuario ya existe" });
         }
         
-        const result = await ModelUsuarios.registerUser(newUser);
+        const result = await ModelUsuarios.registerUser(newUser); // esta variable es para guardar el nuevo usuario
 
         if (result.error) {
             return res.status(400).json({ message: result.message });
@@ -20,9 +20,9 @@ class UserController {
     }
 
 
-    static async loginUser(req, res) {
+    static async loginUser(req, res) { // esta funcion asicronica deberia comunicarse con la base de datos para iniciar sesion
         try {
-            const { email, password } = req.body;
+            const { email, password } = req.body; // se declara la variable email y password para el body de la petición
             const result = await ModelUsuarios.loginUser({ email, password });
 
             if (result.error) {

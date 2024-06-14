@@ -1,7 +1,7 @@
-const { connectToMongoDB, disconnectFromMongoDB } = require('../config/server');
+const { connectToMongoDB, disconnectFromMongoDB } = require('../config/server'); // importamos las dos funciones para conectar y desconectar la base de datos de mongo
 
 class Modelproductos {
-    static async getAll() { // esto deberia comunicarse con la base de datos
+    static async getAll() { // esta funcion asicronica deberia comunicarse con la base de datos para obtener todos los productos
         try {
             const dataDB = await connectToMongoDB();
             if (!dataDB) {
@@ -21,7 +21,7 @@ class Modelproductos {
     }
 
 
-    static async getById(id) {
+    static async getById(id) {// esta funcion asicronica deberia comunicarse con la base de datos para obtener un solo producto
         try {
             const dataDB = await connectToMongoDB();
             if (!dataDB) {
