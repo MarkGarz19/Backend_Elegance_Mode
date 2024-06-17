@@ -1,17 +1,18 @@
 const ModelUsuarios = require('../model/modelusuario');
-
+const brycpt = require('bcryptjs'); // esta variable es para encriptar la contraseña del usuario
+const salt = 10; // esta variable es para encriptar la contraseña del usuario en 10 vueltas
 
 class UserController {
     static async registerUser(req, res) { // esta funcion asicronica deberia comunicarse con la base de datos para registrar un nuevo usuario
         const newUser = req.body; // se declara la variable newUser para el body de la petición
-
-
         const usuarioexistente = await ModelUsuarios.UsarioEmail(newUser.email); // esta variable es para saber si el usuario ya existe
         if (usuarioexistente) {
             return res.status(200).json({ message: "El usuario ya existe" });
         }
 
-        const result = await ModelUsuarios.registerUser(newUser); // esta variable es para guardar el nuevo usuario
+        const password_hashed = await brycpt.hash(newUser.password, salt); // esta variable es para encriptar la contraseña del usuario
+        const newUser_password = { ...newUser, password: password_hashed }; // esta variable es para crear nuevos datos del usuario con la contraseña encriptada
+        const result = await ModelUsuarios.registerUser(newUser_password); // esta variable es para guardar el nuevo usuario
 
         if (result.error) {
             return res.status(400).json({ message: result.message });
@@ -29,7 +30,15 @@ class UserController {
             if (result.error) {
                 return res.status(401).json({ message: result.message });
             }
-            return res.status(200).json({ message: 'Inicio de sesión exitoso', id: result.data._id });
+
+            const password_hashed = result.data.password;
+            const password_confirm = await brycpt.compare(password, password_hashed);
+
+            if (password_confirm) {
+                return res.status(200).json({ message: 'Inicio de sesión exitoso', id: result.data._id });
+            } else {
+                return res.status(401).json({ message: 'Contraseña incorrecta' });
+            }
         } catch (error) {
             res.status(500).json({ message: 'Error del servidor', error: error.message });
         }
