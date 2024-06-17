@@ -9,7 +9,7 @@ const client = new paypal.core.PayPalHttpClient(new Environment(process.env.PAYP
 class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body;
-        const fecha_Pedido = moment().format('YYYY-MM-DD HH:mm:ss');
+        const fecha_Pedido = moment().utc.format('YYYY-MM-DD HH:mm:ss'); // Obtener la fecha y hora actual en UTC, sin poner la zona horaria expecificada dara otra hora
 
         try {
             for (const item of items) {
