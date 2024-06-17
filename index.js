@@ -11,7 +11,6 @@ server.use((req, res, next) => { // esto es para que se puedan hacer peticiones 
     res.setHeader('Access-Control-Allow-Origin', '*'); // para que se puedan hacer peticiones desde cualquier lugar
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', true);
     next()
 })
 
