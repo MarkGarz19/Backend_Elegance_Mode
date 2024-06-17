@@ -71,7 +71,7 @@ class ControllerCarrito { // la clase controladora de carrito
 
     static async handleSuccess(req, res) {
         try {
-            return res.redirect('http://127.0.0.1:5500/frontend/src/index.html');
+            return res("Compra exitosa");
         } catch (error) {
             return res.status(500).json({ message: 'Error en el pago de PayPal', error: error.message });
         }
@@ -79,8 +79,7 @@ class ControllerCarrito { // la clase controladora de carrito
 
     static async handleCancel(req, res) {
         try {
-
-            return res.redirect('http://127.0.0.1:5500/frontend/src/index.html');
+            return res("Compra cancelada");
         } catch (error) {
             return res.status(500).json({ message: 'Error en el pago de PayPal', error: error.message });
         }
