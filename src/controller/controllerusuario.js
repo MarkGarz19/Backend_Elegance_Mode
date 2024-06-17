@@ -8,7 +8,7 @@ class UserController {
         
         const usuarioexistente = await ModelUsuarios.UsarioEmail(newUser.email); // esta variable es para saber si el usuario ya existe
         if (usuarioexistente) {
-            return res.status(200).json({ message: "El usuario ya existe" });
+            return res.status(200).json({ message: "El usuario ya registrado" });
         }
 
         const password_hashed = await brycpt.hash(newUser.password, salt); // esta variable es para encriptar la contraseña del usuario

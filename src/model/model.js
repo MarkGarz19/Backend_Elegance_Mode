@@ -7,10 +7,10 @@ class Modelproductos {
             if (!dataDB) {
                 throw Error("No se ha podido conectar a la base de datos de MongoDB")
             }
-            const resultado = await dataDB.db('Elegance').collection('productos').find().toArray();
+            const resultado = await dataDB.db('Elegance').collection('productos').find().toArray(); // insertamos el o los productos en el catalogo
             await disconnectFromMongoDB();
             console.log(resultado)
-            if (!resultado) {
+            if (!resultado) { // si no hay productos daria un error
                 throw Error("No hay productos en la base de datos");
             }
             return { data: resultado, error: false }
@@ -27,7 +27,7 @@ class Modelproductos {
             if (!dataDB) {
                 throw Error("No se ha podido conectar a la base de datos de MongoDB")
             }
-            const resultado = await dataDB.db('Elegance').collection('productos').findOne({ id: Number(id) });
+            const resultado = await dataDB.db('Elegance').collection('productos').findOne({ id: Number(id) }); // se cogera la id del producto y se devolvera el resultado
             console.log(resultado)
             await disconnectFromMongoDB();
             if (!resultado) {

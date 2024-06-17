@@ -7,10 +7,10 @@ class ModelUsuarios { // creamos la clase modelo de usuarios
             if (!dataDB) {
                 throw Error("No se ha podido conectar a la base de datos de MongoDB");
             }
-            const resultado = await dataDB.db('Elegance').collection('usuarios').find().toArray();
+            const resultado = await dataDB.db('Elegance').collection('usuarios').find().toArray(); // mostraria todos los usuarios registrados en la base de datos
             await disconnectFromMongoDB();
 
-            if (!resultado) {
+            if (!resultado) { // en caso de que no hay usuarios daria un error
                 throw Error("No hay usuarios en la base de datos");
             }
 
@@ -26,7 +26,7 @@ class ModelUsuarios { // creamos la clase modelo de usuarios
             if (!dataDB) {
                 throw new Error("No se ha podido conectar a la base de datos de MongoDB");
             }
-            const result = await dataDB.db('Elegance').collection('usuarios').insertOne(newUser);
+            const result = await dataDB.db('Elegance').collection('usuarios').insertOne(newUser); // insertamos el nuevo usuario en la base de datos de Elegance en la tabla usuarios
             await disconnectFromMongoDB();
             return { data: result, error: false };
 
@@ -34,16 +34,16 @@ class ModelUsuarios { // creamos la clase modelo de usuarios
             return { error: true, message: error.message };
         }
     }
-    static async UsarioEmail(email){ // esta funcion asicronica deberia comunicarse con la base de datos para obtener un usuario por email
-        try{
+    static async UsarioEmail(email) { // esta funcion asicronica deberia comunicarse con la base de datos para obtener un usuario por email
+        try {
             const dataDB = await connectToMongoDB();
             if (!dataDB) {
                 throw new Error("No se ha podido conectar a la base de datos de MongoDB");
             }
-            const resultado = await dataDB.db('Elegance').collection('usuarios').findOne({email: email});
+            const resultado = await dataDB.db('Elegance').collection('usuarios').findOne({ email: email }); // se cogera el email del usuario para verificar si existe
             await disconnectFromMongoDB();
             return resultado
-        }catch(error){
+        } catch (error) {
             return { error: true, message: error.message };
         }
     }
@@ -54,20 +54,20 @@ class ModelUsuarios { // creamos la clase modelo de usuarios
                 throw new Error("No se ha podido conectar a la base de datos de MongoDB");
             }
 
-            const user = await dataDB.db('Elegance').collection('usuarios').findOne({ email });
+            const user = await dataDB.db('Elegance').collection('usuarios').findOne({ email }); // se cogera el email del usuario para verificar si existe y se devolvera el usuario
             await disconnectFromMongoDB();
 
             if (!user) {
                 throw new Error("Usuario Invalido"); // en caso de que el usuario no exista devolvemos un error
             }
 
-            const isMatch = await brycpt.compare(password, user.password);
+            const isMatch = await brycpt.compare(password, user.password); // esta variable es para comparar la contraseña del usuario
 
-            if (!isMatch) {
-                throw new Error("Contraseña Invalida"); // en caso de que la contraseña no coincida devolvemos un error 
+            if (!isMatch) { // en caso de que la contraseña no coincida devolvemos un error
+                throw new Error("Contraseña Invalida");
             }
-            
-            return { data: user, error: false };
+
+            return { data: user, error: false }; // en caso de que coincida la contraseña devolvemos el usuario
 
         } catch (error) {
             return { error: true, message: error.message };
