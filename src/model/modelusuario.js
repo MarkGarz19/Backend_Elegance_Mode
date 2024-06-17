@@ -1,5 +1,5 @@
 const { connectToMongoDB, disconnectFromMongoDB } = require('../config/server'); // importamos las dos funciones para conectar y desconectar la base de datos de mongo
-
+const brycpt = require('bcryptjs'); // esta variable es para encriptar la contraseña del usuario
 class ModelUsuarios { // creamos la clase modelo de usuarios
     static async getAll() { // esta funcion asicronica deberia comunicarse con la base de datos para obtener todos los usuarios
         try {
@@ -61,10 +61,12 @@ class ModelUsuarios { // creamos la clase modelo de usuarios
                 throw new Error("Usuario Invalido"); // en caso de que el usuario no exista devolvemos un error
             }
 
-            if (user.password !== password) {
-                throw new Error("Contraseña incorrecta"); // en caso de que la contraseña sea incorrecta devolvemos un error
-            }
+            const isMatch = await brycpt.compare(password, user.password);
 
+            if (!isMatch) {
+                throw new Error("Contraseña Invalida"); // en caso de que la contraseña no coincida devolvemos un error 
+            }
+            
             return { data: user, error: false };
 
         } catch (error) {
