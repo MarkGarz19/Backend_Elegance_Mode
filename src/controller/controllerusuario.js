@@ -26,6 +26,7 @@ class UserController {
 
     static async loginUser(req, res) { // esta funcion asicronica deberia comunicarse con la base de datos para iniciar sesion
         try {
+            const brycpt = require('bcryptjs');
             const { email, password } = req.body; // se declara la variable email y password para el body de la petición
             const result = await ModelUsuarios.loginUser({ email, password }); // esta variable es para iniciar la sesion con el email y la contraseña
             const confirmPassword = await brycpt.compare(password, result.data.password);
