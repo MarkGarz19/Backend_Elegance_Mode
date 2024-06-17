@@ -9,8 +9,8 @@ const PORT = process.env.PORT || 3000;
 
 server.use((req, res, next) => { // esto es para que se puedan hacer peticiones sin tener problemas con las configuraciones de cors
     res.setHeader('Access-Control-Allow-Origin', '*'); // para que se puedan hacer peticiones desde cualquier lugar
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,  Authorization');
     next()
 })
 
