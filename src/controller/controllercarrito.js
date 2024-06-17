@@ -9,7 +9,7 @@ class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body;
 
-        const fecha_Pedido = new Date().toDateString();
+        const fecha_Pedido = new Date().toLocaleDateString('es-ES',{timeZone: 'UTC',hour: '2-digit',minute: '2-digit'});
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
