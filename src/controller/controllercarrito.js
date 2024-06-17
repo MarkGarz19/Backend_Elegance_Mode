@@ -1,7 +1,5 @@
 const Modelcarrito = require('../model/modelcarrito');
 const paypal = require('@paypal/checkout-server-sdk');
-const moment = require('moment');
-moment.tz.setDefault('UTC');
 
 // Configuración del cliente PayPal
 const Environment = paypal.core.SandboxEnvironment;
@@ -11,7 +9,7 @@ class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body;
 
-        const fecha_Pedido = moment().format('YYYY-MM-DD HH:mm:ss');
+        const fecha_Pedido = new Date().toDateString();
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
