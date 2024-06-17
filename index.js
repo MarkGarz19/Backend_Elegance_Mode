@@ -8,7 +8,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
-const corsOptions = { origin: ['*'], method: ['GET', 'POST'], allowHeaders: ['Content-Type', 'Authorization'] }
+const corsOptions = { origin: '*', optionSuccessStatus: 200, method: ['GET', 'POST'], allowHeaders: ['Content-Type', 'Authorization'] }
 
 server.use(cors(corsOptions));
 
