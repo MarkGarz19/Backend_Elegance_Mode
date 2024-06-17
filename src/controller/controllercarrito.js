@@ -14,7 +14,7 @@ class ControllerCarrito { // la clase controladora de carrito
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
-                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, total, metododepago: metodoDePago, fecha_Pedido: {fecha_Pedido, time} };
+                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, total, metododepago: metodoDePago, fecha_Pedido: fecha_Pedido + ' ' + time };
                 const resultado = await Modelcarrito.newCarrito(carritonew);
 
                 if (!resultado) {
