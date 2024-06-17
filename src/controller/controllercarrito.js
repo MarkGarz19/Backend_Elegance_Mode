@@ -1,6 +1,5 @@
 const Modelcarrito = require('../model/modelcarrito');
 const paypal = require('@paypal/checkout-server-sdk');
-const moment = require('moment');
 
 // Configuración del cliente PayPal
 const Environment = paypal.core.SandboxEnvironment;
@@ -9,9 +8,8 @@ const client = new paypal.core.PayPalHttpClient(new Environment(process.env.PAYP
 class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body;
-        moment.tz.setDefault('UTC');
-        const fecha_Pedido = moment().format('YYYY-MM-DD HH:mm:ss'); // Obtener la fecha y hora actual en UTC, sin poner la zona horaria expecificada dara otra hora
 
+        const fecha_Pedido = new Date().toLocaleDateString('es-ES', { timeZone: 'UTC' });
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
@@ -70,14 +68,7 @@ class ControllerCarrito { // la clase controladora de carrito
 
     static async handleSuccess(req, res) {
         try {
-            const successfulPurchase = true;
-
-            if (successfulPurchase) {
-                // Redirigir a la página de inicio si la compra se realizó con éxito
-                return res.redirect('http://127.0.0.1:5500/frontend/src/index.html');
-            } else {
-                throw new Error('Error en el guardado de la compra en la base de datos');
-            }
+            return res.redirect('http://127.0.0.1:5500/frontend/src/index.html');
         } catch (error) {
             return res.status(500).json({ message: 'Error en el pago de PayPal', error: error.message });
         }
