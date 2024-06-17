@@ -8,7 +8,7 @@ const client = new paypal.core.PayPalHttpClient(new Environment(process.env.PAYP
 class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body;
-        const fecha_Pedido = new Date().toLocaleDateString("es-ES");
+        const fecha_Pedido = new Date().toLocaleDateString("es-ES",{timeZone: 'UTC'});
 
         try {
             for (const item of items) {
