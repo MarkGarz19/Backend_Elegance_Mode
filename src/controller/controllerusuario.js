@@ -31,8 +31,12 @@ class UserController {
             const result = await ModelUsuarios.loginUser({ email, password }); // esta variable es para iniciar la sesion con el email y la contraseña
             const confirmPassword = await brycpt.compare(password, result.data.password);
 
-            if (result.error && confirmPassword.error) {
+            if (result.error) {
                 return res.status(401).json({ message: result.message });
+            }
+
+            if (!confirmPassword){
+                return res.status(401).json({ message: 'Contraseña incorrecta' });
             }
                 return res.status(200).json({ message: 'Inicio de sesión exitoso', id: result.data._id });
         } catch (error) {
