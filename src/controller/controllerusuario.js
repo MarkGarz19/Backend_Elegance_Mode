@@ -4,13 +4,17 @@ const ModelUsuarios = require('../model/modelusuario');
 class UserController {
     static async registerUser(req, res) { // esta funcion asicronica deberia comunicarse con la base de datos para registrar un nuevo usuario
         const newUser = req.body;
+        const brycpt = require('bcryptjs');
+        const salt = 10;
 
         const usuarioexistente = await ModelUsuarios.UsarioEmail(newUser.email); // esta variable es para saber si el usuario ya existe
         if (usuarioexistente) {
             return res.status(200).json({ message: "El usuario ya existe" });
         }
-        
-        const result = await ModelUsuarios.registerUser(newUser); // esta variable es para guardar el nuevo usuario
+
+        const password_hashed = await brycpt.hash(newUser.password, salt); // esta variable es para encriptar la contraseña del usuario
+        const newUser_password = { ...newUser, password: password_hashed };
+        const result = await ModelUsuarios.registerUser(newUser_password); // esta variable es para guardar el nuevo usuario
 
         if (result.error) {
             return res.status(400).json({ message: result.message });
