@@ -9,11 +9,12 @@ class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body;
 
-        const fecha_Pedido = new Date().toLocaleDateString('es-ES',{timeZone: 'UTC',hour: '2-digit',minute: '2-digit'});
+        const fecha_Pedido = new Date().toLocaleDateString('es-ES', { timeZone: 'UTC', });
+        const time = new Date().toLocaleTimeString('es-ES', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit' });
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
-                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, total, metododepago: metodoDePago, fecha_Pedido: fecha_Pedido };
+                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, total, metododepago: metodoDePago, fecha_Pedido: {fecha_Pedido, time} };
                 const resultado = await Modelcarrito.newCarrito(carritonew);
 
                 if (!resultado) {
@@ -47,8 +48,10 @@ class ControllerCarrito { // la clase controladora de carrito
                             }]
                         }],
                         application_context: {
-                            return_url: 'http://localhost:3007/api/productos/success',
-                            cancel_url: 'http://localhost:3007/api/productos/cancel'
+                            /*   return_url: 'http://localhost:3007/api/productos/success',
+                              cancel_url: 'http://localhost:3007/api/productos/cancel' */
+                            return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
+                            cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel'
                         }
                     });
 
