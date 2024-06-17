@@ -7,10 +7,10 @@ const client = new paypal.core.PayPalHttpClient(new Environment(process.env.PAYP
 
 class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
-        const { items, total, metodoDePago } = req.body;
+        const { items, total, metodoDePago } = req.body; // Obtener los items, total y metodo de pago del cuerpo de la petición
 
-        const fecha_Pedido = new Date().toLocaleDateString('es-ES', { timeZone: 'UTC', });
-        const time = new Date().toLocaleTimeString('es-ES', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit' });
+        const fecha_Pedido = new Date().toLocaleDateString('es-ES', { timeZone: 'UTC', }); // Obtener la fecha actual en formato de cadena
+        const time = new Date().toLocaleTimeString('es-ES', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit' }); // Obtener la hora en formato de cadena
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
@@ -56,7 +56,7 @@ class ControllerCarrito { // la clase controladora de carrito
                     });
 
                     const order = await client.execute(request);
-                    const redirectUrl = order.result.links.find(link => link.rel === 'approve').href;
+                    const redirectUrl = order.result.links.find(link => link.rel === 'approve').href; // esta variable indica si la orden de compra fue existosa o no se readireccionara a las urls indicadas
 
                     res.status(200).json({ redirectUrl });
                 }
@@ -69,17 +69,17 @@ class ControllerCarrito { // la clase controladora de carrito
     }
 
 
-    static async handleSuccess(req, res) {
+    static async handleSuccess(req, res) { // esta funcion asicronica deberia comunicarse cuando se realice el pago
         try {
-            return res("Compra exitosa");
+            return res.status(200).json({ message: 'Compra exitosa' }); // se devolvera un mensaje de exito
         } catch (error) {
             return res.status(500).json({ message: 'Error en el pago de PayPal', error: error.message });
         }
     }
 
-    static async handleCancel(req, res) {
+    static async handleCancel(req, res) { // esta funcion asicronica deberia comunicarse cuando no se realice el pago
         try {
-            return res("Compra cancelada");
+            return res.status(200).json({ message: 'Compra cancelada' }); // se devolvera un mensaje de cancelacion
         } catch (error) {
             return res.status(500).json({ message: 'Error en el pago de PayPal', error: error.message });
         }
