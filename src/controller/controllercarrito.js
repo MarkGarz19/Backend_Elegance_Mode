@@ -14,7 +14,7 @@ class ControllerCarrito { // la clase controladora de carrito
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
-                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, Total: total, Fecha: fecha_Pedido, Hora: time, metodoDePago: metodoDePago, Paypal_id: userData.id, Nombre: userData.name, Email: userData.Email };
+                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, Total: total, Fecha: fecha_Pedido, Hora: time, metodoDePago: metodoDePago };
                 const resultado = await Modelcarrito.newCarrito(carritonew);
                 if (!resultado) {
                     return res.status(400).json({ message: 'No se ha podido realizar la compra' });
@@ -39,6 +39,7 @@ class ControllerCarrito { // la clase controladora de carrito
                             },
                             items: [{
                                 name: title,
+                                Nombre: userData.name,
                                 unit_amount: {
                                     currency_code: 'USD',
                                     value: price.toFixed(2)
@@ -47,10 +48,10 @@ class ControllerCarrito { // la clase controladora de carrito
                             }]
                         }],
                         application_context: {
-                            /*  return_url: 'http://localhost:3007/api/productos/success',
-                             cancel_url: 'http://localhost:3007/api/productos/cancel' */
-                            return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
-                            cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel'
+                            return_url: 'http://localhost:3007/api/productos/success',
+                            cancel_url: 'http://localhost:3007/api/productos/cancel'
+                            /*     return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
+                                cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel' */
                         }
                     });
 
