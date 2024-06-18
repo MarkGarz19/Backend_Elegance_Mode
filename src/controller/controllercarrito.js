@@ -1,5 +1,6 @@
 const Modelcarrito = require('../model/modelcarrito');
 const paypal = require('@paypal/checkout-server-sdk');
+const usuario = require('../model/modelusuario');
 
 // Configuración del cliente PayPal
 const Environment = paypal.core.SandboxEnvironment;
@@ -9,7 +10,6 @@ class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body; // Obtener los items, total y metodo de pago del cuerpo de la petición
         const fecha_Pedido = new Date().toLocaleDateString('es-ES', { timeZone: 'UTC', }); // Obtener la fecha actual en formato de cadena
-        const usuario = await dataDB.db('Elegance').collection('usuarios').findOne({ nombre, apellidos })
         const nombre = `${usuario.nombre} ${usuario.apellidos}`;
         const time = new Date().toLocaleTimeString('es-ES', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit' }); // Obtener la hora en formato de cadena
         try {
@@ -48,10 +48,10 @@ class ControllerCarrito { // la clase controladora de carrito
                             }]
                         }],
                         application_context: {
-                            /*  return_url: 'http://localhost:3007/api/productos/success',
-                             cancel_url: 'http://localhost:3007/api/productos/cancel' */
-                            return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
-                            cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel'
+                            return_url: 'http://localhost:3007/api/productos/success',
+                            cancel_url: 'http://localhost:3007/api/productos/cancel'
+                            /*      return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
+                                 cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel' */
                         }
                     });
 
