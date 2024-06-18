@@ -47,6 +47,19 @@ class ModelUsuarios { // creamos la clase modelo de usuarios
             return { error: true, message: error.message };
         }
     }
+    static async UsarioNombre(nombre,apellidos) { // esta funcion asicronica deberia comunicarse con la base de datos para obtener un usuario por email
+        try {
+            const dataDB = await connectToMongoDB();
+            if (!dataDB) {
+                throw new Error("No se ha podido conectar a la base de datos de MongoDB");
+            }
+            const resultado = await dataDB.db('Elegance').collection('usuarios').findOne({ nombre: nombre, apellidos: apellidos }); // se cogera el nombre y apellidos del usuario para verificar
+            await disconnectFromMongoDB();
+            return resultado
+        } catch (error) {
+            return { error: true, message: error.message };
+        }
+    }
     static async loginUser({ email, password }) { // esta funcion deberia comunicarse con la base de datos para iniciar sesión y obtener el usuario correspondiente
         try {
             const dataDB = await connectToMongoDB();

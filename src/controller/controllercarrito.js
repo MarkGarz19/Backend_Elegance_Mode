@@ -10,7 +10,8 @@ class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body; // Obtener los items, total y metodo de pago del cuerpo de la petición
         const fecha_Pedido = new Date().toLocaleDateString('es-ES', { timeZone: 'UTC', }); // Obtener la fecha actual en formato de cadena
-        const nombre = `${usuario.nombre} ${usuario.apellidos}`;
+        const newUser = req.body;
+        const nombre = await usuario.UsarioNombre(newUser.nombre, newUser.apellidos);
         const time = new Date().toLocaleTimeString('es-ES', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit' }); // Obtener la hora en formato de cadena
         try {
             for (const item of items) {
