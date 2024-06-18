@@ -10,13 +10,13 @@ class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body; // Obtener los items, total y metodo de pago del cuerpo de la petición
         const fecha_Pedido = new Date().toLocaleDateString('es-ES', { timeZone: 'UTC', }); // Obtener la fecha actual en formato de cadena
-        const newUser = req.body;
-        const nombre = await usuario.UsarioNombre(newUser.nombre, newUser.apellidos);
+        const usuarios = usuario.UsarioEmail(newUser.email);
+        const { nombre, apellidos } = suarios;
         const time = new Date().toLocaleTimeString('es-ES', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit' }); // Obtener la hora en formato de cadena
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
-                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, Total: total, Fecha: fecha_Pedido, Hora: time, metodoDePago: metodoDePago, usuario: nombre };
+                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, Total: total, Fecha: fecha_Pedido, Hora: time, metodoDePago: metodoDePago, usuario: { nombre, apellidos } };
                 const resultado = await Modelcarrito.newCarrito(carritonew);
                 if (!resultado) {
                     return res.status(400).json({ message: 'No se ha podido realizar la compra' });
