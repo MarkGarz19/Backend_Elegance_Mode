@@ -14,7 +14,6 @@ class ControllerCarrito { // la clase controladora de carrito
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
-                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, total, metododepago: metodoDePago, fecha_Pedido: fecha_Pedido + ' ' + time };
                 const resultado = await Modelcarrito.newCarrito(carritonew);
 
                 if (!resultado) {
@@ -48,16 +47,19 @@ class ControllerCarrito { // la clase controladora de carrito
                             }]
                         }],
                         application_context: {
-                            /*   return_url: 'http://localhost:3007/api/productos/success',
-                              cancel_url: 'http://localhost:3007/api/productos/cancel' */
-                            return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
-                            cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel'
+                            return_url: 'http://localhost:3007/api/productos/success',
+                            cancel_url: 'http://localhost:3007/api/productos/cancel'
+                            /*  return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
+                             cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel' */
                         }
                     });
 
                     const order = await client.execute(request);
                     const redirectUrl = order.result.links.find(link => link.rel === 'approve').href; // esta variable indica si la orden de compra fue existosa o no se readireccionara a las urls indicadas
-
+                    const Order_PayPal = order.result.id;
+                    await carritonew.create({
+                        Producto: title, Precio: price, Cantidad: quantity, total: total + ' USD', metododepago: metodoDePago, fecha_Pedido: fecha_Pedido + ' ' + time, created_at: new Date(), updated_at: new Date()
+                    })
                     res.status(200).json({ redirectUrl });
                 }
             }
