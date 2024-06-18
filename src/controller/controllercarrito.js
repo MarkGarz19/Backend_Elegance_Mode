@@ -47,10 +47,10 @@ class ControllerCarrito { // la clase controladora de carrito
                             }]
                         }],
                         application_context: {
-                            return_url: 'http://localhost:3007/api/productos/success',
-                            cancel_url: 'http://localhost:3007/api/productos/cancel'
-                            /*  return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
-                             cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel' */
+                            /*  return_url: 'http://localhost:3007/api/productos/success',
+                             cancel_url: 'http://localhost:3007/api/productos/cancel' */
+                            return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
+                            cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel'
                         }
                     });
 
