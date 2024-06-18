@@ -1,6 +1,7 @@
 const Modelcarrito = require('../model/modelcarrito');
 const paypal = require('@paypal/checkout-server-sdk');
 
+
 // Configuración del cliente PayPal
 const Environment = paypal.core.SandboxEnvironment;
 const client = new paypal.core.PayPalHttpClient(new Environment(process.env.PAYPAL_API_CLIENT, process.env.PAYPAL_API_SECRET));
@@ -8,13 +9,12 @@ const client = new paypal.core.PayPalHttpClient(new Environment(process.env.PAYP
 class ControllerCarrito { // la clase controladora de carrito
     static async compraProductoCarrito(req, res) {
         const { items, total, metodoDePago } = req.body; // Obtener los items, total y metodo de pago del cuerpo de la petición
-        const user_id = req.user._id; // Obtener el id del usuario
         const fecha_Pedido = new Date().toLocaleDateString('es-ES', { timeZone: 'UTC', }); // Obtener la fecha actual en formato de cadena
         const time = new Date().toLocaleTimeString('es-ES', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit' }); // Obtener la hora en formato de cadena
         try {
             for (const item of items) {
                 const { title, price, quantity } = item; // Extraer el título, precio y cantidad de cada artículo
-                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, Total: total, Fecha: fecha_Pedido, Hora: time, metodoDePago: metodoDePago, user_id: user_id };
+                const carritonew = { Producto: title, Precio: price, Cantidad: quantity, Total: total, Fecha: fecha_Pedido, Hora: time, metodoDePago: metodoDePago, Paypal_id: userData.id, Nombre: userData.name, Email: userData.Email };
                 const resultado = await Modelcarrito.newCarrito(carritonew);
                 if (!resultado) {
                     return res.status(400).json({ message: 'No se ha podido realizar la compra' });
