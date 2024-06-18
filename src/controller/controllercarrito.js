@@ -56,11 +56,6 @@ class ControllerCarrito { // la clase controladora de carrito
 
                     const order = await client.execute(request);
                     const redirectUrl = order.result.links.find(link => link.rel === 'approve').href; // esta variable indica si la orden de compra fue existosa o no se readireccionara a las urls indicadas
-                    const OrderPaypal = order.result.id;
-                    for (const itemsss of resultado) {
-                        itemsss.order_paypal_id = OrderPaypal
-                        await itemsss.save();
-                    }
                     res.status(200).json({ redirectUrl });
                 }
             }
