@@ -1,7 +1,6 @@
 const Modelcarrito = require('../model/modelcarrito');
 const paypal = require('@paypal/checkout-server-sdk');
 
-
 // Configuración del cliente PayPal
 const Environment = paypal.core.SandboxEnvironment;
 const client = new paypal.core.PayPalHttpClient(new Environment(process.env.PAYPAL_API_CLIENT, process.env.PAYPAL_API_SECRET));
@@ -39,7 +38,6 @@ class ControllerCarrito { // la clase controladora de carrito
                             },
                             items: [{
                                 name: title,
-                                Nombre: userData.name,
                                 unit_amount: {
                                     currency_code: 'USD',
                                     value: price.toFixed(2)
@@ -48,10 +46,10 @@ class ControllerCarrito { // la clase controladora de carrito
                             }]
                         }],
                         application_context: {
-                            return_url: 'http://localhost:3007/api/productos/success',
-                            cancel_url: 'http://localhost:3007/api/productos/cancel'
-                            /*     return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
-                                cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel' */
+                            /*  return_url: 'http://localhost:3007/api/productos/success',
+                             cancel_url: 'http://localhost:3007/api/productos/cancel' */
+                            return_url: 'https://frontend-elegance-mode.onrender.com/api/productos/success',
+                            cancel_url: 'https://frontend-elegance-mode.onrender.com/api/productos/cancel'
                         }
                     });
 
